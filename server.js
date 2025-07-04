@@ -5,10 +5,10 @@ dotenv.config();
 const express = require('express');
 const authRoutes = require('./routes/authRoute');
 // const logger = require('./middlewares/logger');
-// const authMiddleware = require('./middlewares/authMiddleware');
+const authMiddleware = require('./middlewares/authMiddleware');
 
 
-// const bookRoutes = require('./routes/bookRoutes');
+const bookRoutes = require('./routes/bookRoutes');
 
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api', authRoutes);
-// app.use('/api/books', authMiddleware, bookRoutes);
+app.use('/api/books', authMiddleware, bookRoutes);
 
 // 404 handler
 app.use((req, res) => res.status(404).json({ error: 'Not Found' }));

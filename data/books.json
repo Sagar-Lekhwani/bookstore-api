@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "0b707130-c057-4e91-b1a6-d30d9ca9aa8a",
+    "title": "Rich Dad Poor Dad",
+    "author": "Sagar Lekhwani",
+    "genre": "New",
+    "publishedYear": 2018,
+    "userId": "1751555447801"
+  },
+  {
+    "id": "2fff358c-ec43-4aa8-9255-67734943ddeb",
+    "title": "Rich Dad Poor Dad 2",
+    "author": "Sagar Lekhwani 2",
+    "genre": "Old",
+    "publishedYear": 2020,
+    "userId": "1751555447801"
+  }
+]
