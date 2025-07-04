@@ -3,10 +3,38 @@ const { v4: uuidv4 } = require('uuid');
 const book = require('../models/bookModel');
 
 const books = {
-  async getAll(req, res) {
-    const booksData = await book.getAllBooks();
-    res.json(booksData);
-  },
+ async getAll(req, res) {
+  const booksData = await book.getAllBooks();
+
+  // Query params
+  const { genre, page = 1, limit = 10 } = req.query;
+
+  // Filter by genre (optional)
+  let filteredBooks = booksData;
+  if (genre) {
+    filteredBooks = filteredBooks.filter(book =>
+      book.genre.toLowerCase() === genre.toLowerCase()
+    );
+  }
+
+  const total = filteredBooks.length;
+  const totalPages = Math.ceil(total / parseInt(limit));
+  const currentPage = parseInt(page);
+  const itemsPerPage = parseInt(limit);
+
+  // Pagination
+  const start = (currentPage - 1) * itemsPerPage;
+  const paginated = filteredBooks.slice(start, start + itemsPerPage);
+
+  res.json({
+    total,
+    totalPages,
+    page: currentPage,
+    limit: itemsPerPage,
+    data: paginated
+  });
+}
+,
 
   async getById(req, res) {
     const booksData = await book.getAllBooks();
